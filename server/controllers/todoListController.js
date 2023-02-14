@@ -39,8 +39,9 @@ todoListController.postTodo = async (req, res, next) => {
 
 todoListController.delete = async (req, res, next) => {
     try {
-      const result = await Todo.findByIdAndDelete(req.params.id)
-      console.log(result);
+      const deleteById = await Todo.findOneAndDelete({_id:req.params.id})
+      console.log(deleteById);
+      res.locals.result = deleteById;
       return next();
     } 
     catch (err) {
@@ -59,7 +60,7 @@ todoListController.complete = async (req, res, next) => {
       todo.complete = !todo.complete;
       todo.save();
 
-      res.locals.updatedTodo = todo;
+      res.locals.todo = todo;
       return next();
     } 
     catch (err) {

@@ -11,14 +11,10 @@ module.exports = {
     port: 8080,
     historyApiFallback: true,
     proxy: {
-    //   '/users': {
-    //     target: 'http://localhost:8080/',
-    //     router: () => 'http://localhost:3000',
-    //   },
-    //   '/transactions': {
-    //     target: 'http://localhost:8080/',
-    //     router: () => 'http://localhost:3000',
-    //   }
+      '/api/**': {
+        target: 'http://localhost:8080/',
+        router: () => 'http://localhost:3000',
+      }
     },
   },
   output: {
